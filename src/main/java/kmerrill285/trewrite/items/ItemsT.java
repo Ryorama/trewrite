@@ -22,6 +22,7 @@ import kmerrill285.trewrite.items.terraria.boss_summon.SuspiciousLookingEye;
 import kmerrill285.trewrite.items.terraria.bows.DemonBow;
 import kmerrill285.trewrite.items.terraria.bows.WoodenBow;
 import kmerrill285.trewrite.items.terraria.broadswords.CopperBroadsword;
+import kmerrill285.trewrite.items.terraria.broadswords.FireSword;
 import kmerrill285.trewrite.items.terraria.broadswords.IronBroadsword;
 import kmerrill285.trewrite.items.terraria.broadswords.LightsBane;
 import kmerrill285.trewrite.items.terraria.hammers.CopperHammer;
@@ -45,6 +46,7 @@ public class ItemsT {
 	public static IronPickaxe IRON_PICKAXE;
 	public static ItemBlockT DIRT_BLOCK;
 	public static IronBroadsword IRON_BROADSWORD;
+	public static FireSword FIRE_SWORD;
 	public static IronShortsword IRON_SHORTSWORD;
 	public static ItemBlockT IRON_ORE;
 	public static MetalBar GOLD_BAR;
@@ -69,6 +71,7 @@ public class ItemsT {
 	public static ItemAcorn ACORN;
 	public static ItemBlockT BOTTLE;
 	public static ItemT LESSER_HEALING_POTION;
+	public static ItemT HEALING_POTION;
 	public static ItemBlockT GRASS_BLOCK;
 	public static ItemBlockT GRASS_PATH;
 	public static IronHammer IRON_HAMMER;
@@ -209,6 +212,7 @@ public class ItemsT {
 				IRON_PICKAXE = new IronPickaxe(),
 				DIRT_BLOCK = (ItemBlockT) new ItemBlockT(BlocksT.DIRT_BLOCK, "dirt_block"),
 				IRON_BROADSWORD = new IronBroadsword(),
+				FIRE_SWORD = new FireSword(),
 				IRON_SHORTSWORD = new IronShortsword(),
 				IRON_ORE = (ItemBlockT) new ItemBlockT(BlocksT.IRON_ORE, "iron_ore"),
 				GOLD_BAR = new MetalBar(1200, "gold_bar"),
@@ -230,6 +234,7 @@ public class ItemsT {
 				ACORN = (ItemAcorn) new ItemAcorn(BlocksT.FOREST_SAPLING, "acorn").setMaxStack(99),
 				BOTTLE = (ItemBlockT) new ItemBlockT(BlocksT.BOTTLE, "bottle").setMaterial(),
 				LESSER_HEALING_POTION = new ItemT(new Properties().group(ItemGroup.BREWING), "lesser_healing_potion").setMaterial().setConsumable().setPotionSickness(60).setHeal(50).setMaxStack(30),
+				HEALING_POTION = new ItemT(new Properties().group(ItemGroup.BREWING), "healing_potion").setMaterial().setConsumable().setPotionSickness(60).setHeal(100).setMaxStack(30),
 				GRASS_BLOCK = (ItemBlockT) new ItemBlockT(BlocksT.GRASS_BLOCK, "grass_block"),
 				GRASS_PATH = (ItemBlockT) new ItemBlockT(BlocksT.GRASS_PATH, "grass_path"),
 				IRON_HAMMER = new IronHammer(),

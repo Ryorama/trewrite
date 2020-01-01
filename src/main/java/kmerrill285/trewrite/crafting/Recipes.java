@@ -110,6 +110,7 @@ public class Recipes {
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.IRON_BAR, 1), BlocksT.FURNACE, new ItemStackT(ItemsT.IRON_ORE, 3)));
 
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.LESSER_HEALING_POTION, 2), BlocksT.BOTTLE, new ItemStackT(ItemsT.MUSHROOM, 1), new ItemStackT(ItemsT.GEL, 2), new ItemStackT(ItemsT.BOTTLE, 2)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.HEALING_POTION, 1), BlocksT.BOTTLE, new ItemStackT(ItemsT.LESSER_HEALING_POTION, 2), new ItemStackT(ItemsT.GLOWING_MUSHROOM, 1)));
 	
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.EBONWOOD_PLATFORM, 2), null, new ItemStackT(ItemsT.EBONWOOD, 1)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.EBONWOOD, 1), null, new ItemStackT(ItemsT.EBONWOOD_PLATFORM, 2)));
@@ -135,6 +136,7 @@ public class Recipes {
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.DEMON_BOW, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.DEMONITE_BAR, 8)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.WAR_AXE_OF_THE_NIGHT, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.DEMONITE_BAR, 10)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.LIGHTS_BANE, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.DEMONITE_BAR, 10)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.FIRE_SWORD, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.HELLSTONE_BAR, 20)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.CHAIN, 10), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.IRON_BAR, 1)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.COPPER_WATCH, 1), BlocksT.TABLE, new ItemStackT(ItemsT.COPPER_BAR, 10), new ItemStackT(ItemsT.CHAIN, 1)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.SILVER_WATCH, 1), BlocksT.TABLE, new ItemStackT(ItemsT.SILVER_BAR, 10), new ItemStackT(ItemsT.CHAIN, 1)));
