@@ -53,6 +53,7 @@ public class ItemsT {
 	public static IronAxe IRON_AXE;
 	public static ItemBlockT STONE_BLOCK;
 	public static ItemBlockT MUSHROOM;
+	public static ItemBlockT DAYBLOOM;
 	public static ItemBlockT COPPER_ORE;
 	public static ItemBlockT GOLD_ORE;
 	public static ItemBlockT SILVER_ORE;
@@ -99,6 +100,7 @@ public class ItemsT {
 	public static ItemT COPPER_BAR;
 	public static ItemT IRON_BAR;
 	public static ItemT SILVER_BAR;
+	public static ItemT HELLSTONE_BAR;
 	public static ItemBlockT IRON_ANVIL;
 	public static ItemBlockT CORRUPT_GRASS;
 	public static ItemBlockT VILE_MUSHROOM;
@@ -210,11 +212,13 @@ public class ItemsT {
 				IRON_SHORTSWORD = new IronShortsword(),
 				IRON_ORE = (ItemBlockT) new ItemBlockT(BlocksT.IRON_ORE, "iron_ore"),
 				GOLD_BAR = new MetalBar(1200, "gold_bar"),
+				HELLSTONE_BAR = new MetalBar(1200, "hellstone_bar"),
 				GEL = new BasicItem(new Properties().group(ItemGroup.MATERIALS), 1, "gel", true),
 				WOODEN_SWORD = new BasicBroadsword(7, 4, 24, 20, "wooden_sword"),
 				IRON_AXE = new IronAxe(),
 				STONE_BLOCK = (ItemBlockT) new ItemBlockT(BlocksT.STONE_BLOCK, "stone_block"),
 				MUSHROOM = (ItemBlockT) new ItemBlockT(BlocksT.MUSHROOM, "mushroom").setMaxStack(99),
+				DAYBLOOM = (ItemBlockT) new ItemBlockT(BlocksT.DAYBLOOM, "daybloom").setMaxStack(99),
 				COPPER_ORE = (ItemBlockT) new ItemBlockT(BlocksT.COPPER_ORE, "copper_ore"),
 				GOLD_ORE = (ItemBlockT) new ItemBlockT(BlocksT.GOLD_ORE, "gold_ore"),
 				SILVER_ORE = (ItemBlockT) new ItemBlockT(BlocksT.SILVER_ORE, "silver_ore"),

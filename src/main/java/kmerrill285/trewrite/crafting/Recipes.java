@@ -104,6 +104,7 @@ public class Recipes {
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.IRON_ANVIL, 1), BlocksT.WORKBENCH, new ItemStackT(ItemsT.IRON_BAR, 5)));
 
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.GOLD_BAR, 1), BlocksT.FURNACE, new ItemStackT(ItemsT.GOLD_ORE, 4)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.HELLSTONE_BAR, 1), BlocksT.HELLFORGE, new ItemStackT(ItemsT.HELLSTONE, 3), new ItemStackT(ItemsT.OBSIDIAN, 1)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.COPPER_BAR, 1), BlocksT.FURNACE, new ItemStackT(ItemsT.COPPER_ORE, 3)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.SILVER_BAR, 1), BlocksT.FURNACE, new ItemStackT(ItemsT.SILVER_ORE, 4)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.IRON_BAR, 1), BlocksT.FURNACE, new ItemStackT(ItemsT.IRON_ORE, 3)));

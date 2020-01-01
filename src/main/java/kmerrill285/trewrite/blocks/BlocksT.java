@@ -22,6 +22,7 @@ public class BlocksT {
 	public static BlockT IRON_ORE;
 	public static BasicBlock STONE_BLOCK;
 	public static BasicPlant MUSHROOM;
+	public static BasicPlant DAYBLOOM;
 	public static BlockT GOLD_ORE;
 	public static BlockT COPPER_ORE;
 	public static BlockT SILVER_ORE;
@@ -175,6 +176,7 @@ public class BlocksT {
 					IRON_ORE = new IronOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
 					STONE_BLOCK = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.STONE), STONE_HARDNESS, 15, true, false, false, true, "stone_block", "stone_block"),
 					MUSHROOM = (BasicPlant) new BasicPlant(Properties.create(Material.TALL_PLANTS).sound(SoundType.PLANT).doesNotBlockMovement(), 0, 0, true, true, true, true, "mushroom", 15, 0, "mushroom").setShape(Shape.MUSHROOM).setPotionSickness(60).setSell(250).setConsumable().setMaterial().addAllowed("grass_block", "highlands_grass"),
+					DAYBLOOM = (BasicPlant) new BasicPlant(Properties.create(Material.TALL_PLANTS).sound(SoundType.PLANT).doesNotBlockMovement(), 0, 0, true, true, true, true, "daybloom", 15, 0, "daybloom").setShape(Shape.MUSHROOM).setSell(250).setMaterial().addAllowed("grass_block", "highlands_grass"),
 					GOLD_ORE = new GoldOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
 					COPPER_ORE = new CopperOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
 					SILVER_ORE = new SilverOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
