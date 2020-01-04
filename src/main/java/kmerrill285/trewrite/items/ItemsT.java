@@ -20,6 +20,7 @@ import kmerrill285.trewrite.items.terraria.axes.IronAxe;
 import kmerrill285.trewrite.items.terraria.axes.WarAxeOfTheNight;
 import kmerrill285.trewrite.items.terraria.boss_summon.SuspiciousLookingEye;
 import kmerrill285.trewrite.items.terraria.bows.DemonBow;
+import kmerrill285.trewrite.items.terraria.bows.GoldBow;
 import kmerrill285.trewrite.items.terraria.bows.IronBow;
 import kmerrill285.trewrite.items.terraria.bows.WoodenBow;
 import kmerrill285.trewrite.items.terraria.broadswords.CopperBroadsword;
@@ -33,6 +34,7 @@ import kmerrill285.trewrite.items.terraria.hammers.IronHammer;
 import kmerrill285.trewrite.items.terraria.picks.CopperPickaxe;
 import kmerrill285.trewrite.items.terraria.picks.GoldPick;
 import kmerrill285.trewrite.items.terraria.picks.IronPickaxe;
+import kmerrill285.trewrite.items.terraria.picks.NightmarePickaxe;
 import kmerrill285.trewrite.items.terraria.shortswords.CopperShortsword;
 import kmerrill285.trewrite.items.terraria.shortswords.IronShortsword;
 import kmerrill285.trewrite.items.terraria.throwable.Shuriken;
@@ -48,11 +50,13 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class ItemsT {
 	public static IronPickaxe IRON_PICKAXE;
+	public static NightmarePickaxe NIGHTMARE_PICKAXE;
 	public static GoldPick GOLD_PICKAXE;
 	public static ItemBlockT DIRT_BLOCK;
 	public static IronBroadsword IRON_BROADSWORD;
 	public static naturesblade NATURESBLADE;
 	public static ItemT IRON_BOW;
+	public static ItemT GOLD_BOW;
 	public static FireSword FIRE_SWORD;
 	public static Tekhaira TEKHAIRA;
 	public static IronShortsword IRON_SHORTSWORD;
@@ -79,6 +83,8 @@ public class ItemsT {
 	@ObjectHolder("trewrite:shield_of_cthulhu")
 	public static Accessory SHIELD_OF_CTHULHU;
 	public static ItemBlockT LIFE_CRYSTAL;
+	@ObjectHolder("trewrite:angel_wings")
+	public static Accessory ANGEL_WINGS;
 	public static ItemAcorn ACORN;
 	public static ItemBlockT BOTTLE;
 	public static ItemT LESSER_HEALING_POTION;
@@ -159,6 +165,9 @@ public class ItemsT {
 	public static Armor COPPER_HELMET;
 	public static Armor COPPER_CHESTPLATE;
 	public static Armor COPPER_LEGGINGS;
+	public static Armor IRON_HELMET;
+	public static Armor IRON_CHESTPLATE;
+	public static Armor IRON_LEGGINGS;
 	
 	public static ItemT LENS;
 	
@@ -225,6 +234,7 @@ public class ItemsT {
 	public static void registerItems(final RegistryEvent.Register<Item> event) {
 		event.getRegistry().registerAll(
 				IRON_PICKAXE = new IronPickaxe(),
+				NIGHTMARE_PICKAXE = new NightmarePickaxe(),
 				GOLD_PICKAXE = new GoldPick(),
 				DIRT_BLOCK = (ItemBlockT) new ItemBlockT(BlocksT.DIRT_BLOCK, "dirt_block"),
 				IRON_BROADSWORD = new IronBroadsword(),
@@ -247,6 +257,7 @@ public class ItemsT {
 				SILVER_ORE = (ItemBlockT) new ItemBlockT(BlocksT.SILVER_ORE, "silver_ore"),
 				COPPER_WATCH = (Accessory) new Accessory(new Properties().group(ItemGroup.MISC), "copper_watch").setWearable(WearSlot.SINGLE_LEG).setTooltip("Tells the time").setBuySell(200),
 				SHIELD_OF_CTHULHU = (Accessory) new Accessory(new Properties().group(ItemGroup.MISC), "shield_of_cthulhu").setWearable(WearSlot.SINGLE_LEG).setTooltip("Allows the player to dash into the enemy").setBuySell(200),
+				ANGEL_WINGS = (Accessory) new Accessory(new Properties().group(ItemGroup.MISC), "angel_wings").setWearable(WearSlot.SINGLE_LEG).setTooltip("Allows flight and slow fall").setBuySell(200),
 				SILVER_WATCH = (Accessory) new Accessory(new Properties().group(ItemGroup.MISC), "silver_watch").setWearable(WearSlot.SINGLE_LEG).setTooltip("Tells the time").setBuySell(1000),
 				GOLD_WATCH = (Accessory) new Accessory(new Properties().group(ItemGroup.MISC), "gold_watch").setWearable(WearSlot.SINGLE_LEG).setTooltip("Tells the time").setBuySell(2000),
 				DEPTH_METER = (Accessory) new Accessory(new Properties().group(ItemGroup.MISC), "depth_meter").setTooltip("Shows depth").setBuySell(2500),
@@ -327,6 +338,9 @@ public class ItemsT {
 				COPPER_HELMET = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "copper_helmet", Armor.ArmorType.HEAD, 1).setMaxStack(1).setBuySell(200),
 				COPPER_CHESTPLATE = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "copper_chestplate", Armor.ArmorType.CHEST, 2).setMaxStack(1).setBuySell(200),
 				COPPER_LEGGINGS = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "copper_leggings", Armor.ArmorType.LEGS, 1).setMaxStack(1).setBuySell(200),
+				IRON_HELMET = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "iron_helmet", Armor.ArmorType.HEAD, 2).setMaxStack(1).setBuySell(200),
+				IRON_CHESTPLATE = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "iron_chestplate", Armor.ArmorType.CHEST, 3).setMaxStack(1).setBuySell(200),
+				IRON_LEGGINGS = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "iron_leggings", Armor.ArmorType.LEGS, 2).setMaxStack(1).setBuySell(200),
 				LENS = new ItemT(new Properties().group(ItemGroup.MATERIALS), "lens").setMaterial().setBuySell(100).setMaxStack(99),
 				WOODEN_BOW = new WoodenBow(),
 				WOODEN_ARROW = new WoodenArrow().setMaxStack(999).setMaterial(),
@@ -336,6 +350,7 @@ public class ItemsT {
 				DEMONITE_BAR = new ItemT(new Properties().group(ItemGroup.MATERIALS), "demonite_bar").setMaterial().setBuySell(3200).setMaxStack(99),
 				DEMON_BOW = new DemonBow(),
 				IRON_BOW = new IronBow(),
+				GOLD_BOW = new GoldBow(),
 				WAR_AXE_OF_THE_NIGHT = new WarAxeOfTheNight(),
 				CHAIN = new ItemBlockT(BlocksT.CHAIN, "chain").setMaterial().setBuySell(40).setMaxStack(999),
 				LIGHTS_BANE = new LightsBane(),

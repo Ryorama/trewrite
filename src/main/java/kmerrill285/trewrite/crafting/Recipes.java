@@ -130,13 +130,19 @@ public class Recipes {
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.HELLFORGE, 1), BlocksT.WORKBENCH, new ItemStackT(ItemsT.HELLSTONE, 30)));
 		
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.MUD, 1), Blocks.WATER, new ItemStackT(ItemsT.DIRT_BLOCK, 1)));
-		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.COPPER_HELMET, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.DIRT_BLOCK, 1)));
-		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.COPPER_CHESTPLATE, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.DIRT_BLOCK, 1)));
-		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.COPPER_LEGGINGS, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.DIRT_BLOCK, 1)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.ANGEL_WINGS, 1), BlocksT.WORKBENCH, new ItemStackT(ItemsT.DIRT_BLOCK, 1)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.COPPER_HELMET, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.COPPER_BAR, 15)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.COPPER_CHESTPLATE, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.COPPER_BAR, 25)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.COPPER_LEGGINGS, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.COPPER_BAR, 25)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.IRON_HELMET, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.IRON_BAR, 20)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.IRON_CHESTPLATE, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.IRON_BAR, 30)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.IRON_LEGGINGS, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.IRON_BAR, 25)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.WOODEN_BOW, 1), BlocksT.WORKBENCH, new ItemStackT(ItemsT.ANY_WOOD, 10)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.GOGGLES, 1), BlocksT.WORKBENCH, new ItemStackT(ItemsT.LENS, 2)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.WOODEN_ARROW, 25), BlocksT.WORKBENCH, new ItemStackT(ItemsT.ANY_WOOD, 1), new ItemStackT(ItemsT.STONE_BLOCK, 1)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.FLAMING_ARROW, 10), null, new ItemStackT(ItemsT.WOODEN_ARROW, 10), new ItemStackT(ItemsT.TORCH, 1)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.IRON_PICKAXE, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.IRON_BAR, 12), new ItemStackT(ItemsT.ANY_WOOD, 3)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.NIGHTMARE_PICKAXE, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.DEMONITE_BAR, 12)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.SUSPICIOUS_LOOKING_EYE, 1), BlocksT.DEMON_ALTAR, new ItemStackT(ItemsT.LENS, 10)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.DEMONITE_BAR, 1), BlocksT.FURNACE, new ItemStackT(ItemsT.DEMONITE_ORE, 3)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.DEMON_BOW, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.DEMONITE_BAR, 8)));
@@ -145,6 +151,7 @@ public class Recipes {
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.IRON_BROADSWORD, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.IRON_BAR, 8)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.IRON_SHORTSWORD, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.IRON_BAR, 7)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.IRON_BOW, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.IRON_BAR, 7)));
+		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.GOLD_BOW, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.GOLD_BAR, 7)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.FIRE_SWORD, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.HELLSTONE_BAR, 20)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.GOLD_PICKAXE, 1), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.GOLD_BAR, 12), new ItemStackT(ItemsT.ANY_WOOD, 4)));
 		addRecipe(new CraftingRecipe(new ItemStackT(ItemsT.CHAIN, 10), BlocksT.IRON_ANVIL, new ItemStackT(ItemsT.IRON_BAR, 1)));
