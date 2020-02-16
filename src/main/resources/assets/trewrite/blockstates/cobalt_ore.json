@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "trewrite:block/ores/cobalt_ore" }
+    }
+}

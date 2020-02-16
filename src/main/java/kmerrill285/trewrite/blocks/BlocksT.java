@@ -1,11 +1,20 @@
 package kmerrill285.trewrite.blocks;
 
 import kmerrill285.trewrite.blocks.CrossedBlock.Shape;
+import kmerrill285.trewrite.blocks.corruption_orbs.ShadowOrb;
+import kmerrill285.trewrite.blocks.ores.AdamantiteOre;
+import kmerrill285.trewrite.blocks.ores.CobaltOre;
 import kmerrill285.trewrite.blocks.ores.CopperOre;
 import kmerrill285.trewrite.blocks.ores.DemoniteOre;
 import kmerrill285.trewrite.blocks.ores.GoldOre;
 import kmerrill285.trewrite.blocks.ores.IronOre;
+import kmerrill285.trewrite.blocks.ores.MithrilOre;
+import kmerrill285.trewrite.blocks.ores.OrichalcumOre;
+import kmerrill285.trewrite.blocks.ores.PallidumOre;
 import kmerrill285.trewrite.blocks.ores.SilverOre;
+import kmerrill285.trewrite.blocks.ores.TitaniumOre;
+import kmerrill285.trewrite.blocks.pots.ObsidianPot;
+import kmerrill285.trewrite.blocks.pots.Pot;
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.Properties;
 import net.minecraft.block.SoundType;
@@ -22,7 +31,6 @@ public class BlocksT {
 	public static BlockT IRON_ORE;
 	public static BasicBlock STONE_BLOCK;
 	public static BasicPlant MUSHROOM;
-	public static BasicPlant DAYBLOOM;
 	public static BlockT GOLD_ORE;
 	public static BlockT COPPER_ORE;
 	public static BlockT SILVER_ORE;
@@ -164,7 +172,52 @@ public class BlocksT {
 	public static BlockT HELLFORGE;
 	
 	public static BlockT OBSIDIAN;
+	
+	public static BlockT OBSIDIAN_BRICK;
+	
+	public static BlockT OBSIDIAN_CHEST;
 
+	public static BlockT OBSIDIAN_PLATFORM;
+	
+	public static BlockT OBSIDIAN_VASE;
+	
+	public static BlockT OBSIDIAN_LAMP;
+	
+	public static BlockT OBSIDIAN_PIANO;
+	
+	public static BlockT OBSIDIAN_DOOR;
+	
+	public static BlockT OBSIDIAN_CHANDELIER;
+	public static BlockT OBSIDIAN_CANDELABRA;
+	public static BlockT OBSIDIAN_CANDLE;
+	public static BlockT OBSIDIAN_LANTERN;
+	
+	public static BlockT DIMENSION_BLOCK;
+	
+	public static BlockT OBSIDIAN_BED;
+	public static BlockT OBSIDIAN_CLOCK;
+	public static BlockT OBSIDIAN_WORKBENCH;
+	public static BlockT OBSIDIAN_TABLE;
+	public static BlockT OBSIDIAN_DRESSER;
+	public static BlockT OBSIDIAN_SOFA;
+	public static BlockT OBSIDIAN_BATHTUB;
+	public static BlockT OBSIDIAN_SINK;
+	public static BlockT OBSIDIAN_CHAIR;
+	public static BlockT OBSIDIAN_BOOKCASE;
+	
+	public static BlockT OBSIDIAN_POT;
+	
+	public static BlockT AIR_BLOCK;
+	public static BlockT ROPE;
+	
+	public static BlockT SHADOW_ORB;
+
+	public static CobaltOre COBALT_ORE;
+	public static PallidumOre PALLIDUM_ORE;
+	public static MithrilOre MITHRIL_ORE;
+	public static OrichalcumOre ORICHALCUM_ORE;
+	public static AdamantiteOre ADAMANTITE_ORE;
+	public static TitaniumOre TITANIUM_ORE;
 	
 	public static float mul = 1.5f;
 	public static float GROUND_HARDNESS = 30.0f * mul, STONE_HARDNESS = 45.0f * mul, ORE_HARDNESS = 50.0f * mul, DUNGEON_HARDNESS = 60.0f * mul;
@@ -172,11 +225,11 @@ public class BlocksT {
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		event.getRegistry().registerAll(
+					AIR_BLOCK = new BlockAirT().setLocation("air_block"),
 					DIRT_BLOCK = new DirtBlock(Properties.create(Material.EARTH).sound(SoundType.GROUND)).setLocation("dirt_block"),
 					IRON_ORE = new IronOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
 					STONE_BLOCK = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.STONE), STONE_HARDNESS, 15, true, false, false, true, "stone_block", "stone_block"),
 					MUSHROOM = (BasicPlant) new BasicPlant(Properties.create(Material.TALL_PLANTS).sound(SoundType.PLANT).doesNotBlockMovement(), 0, 0, true, true, true, true, "mushroom", 15, 0, "mushroom").setShape(Shape.MUSHROOM).setPotionSickness(60).setSell(250).setConsumable().setMaterial().addAllowed("grass_block", "highlands_grass"),
-					DAYBLOOM = (BasicPlant) new BasicPlant(Properties.create(Material.TALL_PLANTS).sound(SoundType.PLANT).doesNotBlockMovement(), 0, 0, true, true, true, true, "daybloom", 15, 0, "daybloom").setShape(Shape.MUSHROOM).setSell(250).setMaterial().addAllowed("grass_block", "highlands_grass"),
 					GOLD_ORE = new GoldOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
 					COPPER_ORE = new CopperOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
 					SILVER_ORE = new SilverOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
@@ -240,9 +293,9 @@ public class BlocksT {
 					EBONSTONE = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.STONE), STONE_HARDNESS, 65, true, false, false, true, "ebonstone", "ebonstone"),
 					SAND = new FallingBlock(Properties.create(Material.EARTH).sound(SoundType.SAND), GROUND_HARDNESS, 15, true, false, false, true, "sand", "sand"),
 					EBONSAND = new FallingBlock(Properties.create(Material.EARTH).sound(SoundType.SAND), GROUND_HARDNESS, 15, true, false, false, true, "ebonsand", "ebonsand"),
-					SUNFLOWER = (BasicPlant) new BasicPlant(Properties.create(Material.PLANTS).sound(SoundType.PLANT).doesNotBlockMovement().lightValue(4), 0, 0, true, true, true, false, "sunflower", 0, 0, "sunflower").setShape(Shape.BLOCK).setSell(40).addAllowed("grass_block"),
+					SUNFLOWER = (BasicPlant) new BasicPlant(Properties.create(Material.PLANTS).sound(SoundType.PLANT).doesNotBlockMovement().lightValue(4), 0, 0, true, true, true, false, "sunflower", 0, 0, "sunflower").setShape(Shape.BLOCK).setSell(40).addAllowed("grass_block", "highlands_grass"),
 					DEMON_ALTAR = (BasicBlock) new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.NETHER_WART).doesNotBlockMovement().lightValue(3), 25, 80, false, false, true, false, "altar", "no drop").setRenderLayer(BlockRenderLayer.CUTOUT),
-					POT = (BasicBlock) new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.GLASS).doesNotBlockMovement(), 0, 0, true, true, true, false, "pot", "no drop").setRenderLayer(BlockRenderLayer.CUTOUT),
+					POT = new Pot(Properties.create(Material.EARTH).sound(SoundType.GLASS).doesNotBlockMovement(), "pot").setShape(Shape.BLOCK),
 					PIGGY_BANK = (PiggyBank) new PiggyBank(Properties.create(Material.EARTH).sound(SoundType.GLASS), "piggy_bank").setRenderLayer(BlockRenderLayer.CUTOUT),
 					HIGHLANDS_GRASS = new GrassBlock(Properties.create(Material.EARTH).sound(SoundType.GROUND)).setLocation("highlands_grass").addAllowed("flower", "mushroom", "sunflower"),
 					BOG_GRASS = new GrassBlock(Properties.create(Material.EARTH).sound(SoundType.GROUND)).setLocation("bog_grass").addAllowed("flower", "mushroom", "sunflower", "corruption_plants", "vile_mushroom"),
@@ -261,12 +314,12 @@ public class BlocksT {
 					JUNGLE_GRASS = new JungleGrassBlock(Properties.create(Material.EARTH).sound(SoundType.GROUND)).setLocation("jungle_grass").addAllowed("flower", "mushroom", "sunflower"),
 					MUD = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.GROUND), BlocksT.GROUND_HARDNESS, 10.0f, true, false, false, true, "mud", "mud"),
 					DEEP_MUD = new DeepMudBlock(Properties.create(Material.EARTH).sound(SoundType.GROUND)).setLocation("deep_mud"),
-					ICE = new BasicBlock(Properties.create(Material.PACKED_ICE).sound(SoundType.GLASS), STONE_HARDNESS, 15, true, false, false, true, "ice", "ice"),
-					PURPLE_ICE = new BasicBlock(Properties.create(Material.PACKED_ICE).sound(SoundType.GLASS), STONE_HARDNESS, 15, true, false, false, true, "purple_ice", "purple_ice"),
-					THIN_ICE = new ThinIceBlock(Properties.create(Material.PACKED_ICE).sound(SoundType.GLASS)).setLocation("thin_ice").setRenderLayer(BlockRenderLayer.TRANSLUCENT),
+					ICE = new BasicBlock(Properties.create(Material.PACKED_ICE).sound(SoundType.GLASS).slipperiness(0.989F), STONE_HARDNESS, 15, true, false, false, true, "ice", "ice"),
+					PURPLE_ICE = new BasicBlock(Properties.create(Material.PACKED_ICE).sound(SoundType.GLASS).slipperiness(0.989F), STONE_HARDNESS, 15, true, false, false, true, "purple_ice", "purple_ice"),
+					THIN_ICE = new ThinIceBlock(Properties.create(Material.PACKED_ICE).sound(SoundType.GLASS).slipperiness(0.989F)).setLocation("thin_ice").setRenderLayer(BlockRenderLayer.TRANSLUCENT),
 					SNOW = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.SNOW), GROUND_HARDNESS, 15, true, false, false, true, "snow", "snow"),
 					SAVANNA_GRASS = new GrassBlock(Properties.create(Material.EARTH).sound(SoundType.GROUND)).setLocation("savannah_grass").addAllowed("tall_savannah_grass"),
-					TALL_SAVANNA_GRASS = (CrossedBlock) new CrossedBlock(Properties.create(Material.EARTH).sound(SoundType.PLANT).doesNotBlockMovement(), 0, 0, true, true, false, true, "tall_savannah_grass", "none").setShape(Shape.SMALL_GRASS),
+					TALL_SAVANNA_GRASS = (CrossedBlock) new CrossedBlock(Properties.create(Material.TALL_PLANTS).sound(SoundType.PLANT).doesNotBlockMovement(), 0, 0, true, true, false, true, "tall_savannah_grass", "none").setShape(Shape.SMALL_GRASS),
 					LIVING_WOOD = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.WOOD), ORE_HARDNESS * 3, 15, true, false, false, false, "living_wood", "wood"),
 					LEAVES = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.PLANT), GROUND_HARDNESS, 15, true, false, false, false, "leaves", "leaves"),
 					LIVING_WOOD_PLATFORM = new Platform(Properties.create(Material.EARTH).sound(SoundType.WOOD), true, "living_wood_platform"),
@@ -276,7 +329,7 @@ public class BlocksT {
 					CACTUS_BLOCK = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.CLOTH), GROUND_HARDNESS, 15, true, false, false, false, "cactus_block", "cactus_block"),
 					CACTUS = (Tree) new Tree(Properties.create(Material.WOOD).sound(SoundType.WOOD), ORE_HARDNESS * 3, 15, false, true, false, false, "cactus", "cactus_block").addAllowed("cactus", "sand"),
 					CORRUPT_CACTUS = (Tree) new Tree(Properties.create(Material.WOOD).sound(SoundType.WOOD), ORE_HARDNESS * 3, 15, false, true, false, false, "corrupt_cactus", "cactus_block").addAllowed("corrupt_cactus", "sand"),
-					TALL_GRASS = (CrossedBlock) new CrossedBlock(Properties.create(Material.EARTH).sound(SoundType.PLANT).doesNotBlockMovement(), 0, 0, true, true, false, true, "tall_grass", "none").setShape(Shape.SMALL_GRASS),
+					TALL_GRASS = (CrossedBlock) new CrossedBlock(Properties.create(Material.TALL_PLANTS).sound(SoundType.PLANT).doesNotBlockMovement(), 0, 0, true, true, false, true, "tall_grass", "none").setShape(Shape.SMALL_GRASS),
 					LARGE_MUSHROOM = (Tree) new Tree(Properties.create(Material.WOOD).sound(SoundType.WOOD), ORE_HARDNESS * 3, 15, false, true, false, false, "large_mushroom", "glowing_mushroom").addAllowed("large_mushroom", "mushroom_grass"),
 					GLOWING_MUSHROOM = (BasicPlant) new BasicPlant(Properties.create(Material.TALL_PLANTS).sound(SoundType.PLANT).doesNotBlockMovement(), 0, 0, true, true, true, true, "glowing_mushroom", 0, 0, "glowing_mushroom").setShape(Shape.MUSHROOM).setSell(250).setMaterial(),
 					MUSHROOM_GRASS = new MushroomGrassBlock(Properties.create(Material.EARTH).sound(SoundType.GROUND)).setLocation("mushroom_grass"),
@@ -298,7 +351,42 @@ public class BlocksT {
 					HELLSTONE = new HellstoneBlock(Properties.create(Material.EARTH).sound(SoundType.STONE)).setLocation("hellstone"),
 					HELLSTONE_BRICKS = new HellstoneBricks(Properties.create(Material.EARTH).sound(SoundType.STONE)).setLocation("hellstone_bricks"),
 					HELLFORGE = new BasicDirectional(Properties.create(Material.EARTH).sound(SoundType.STONE), STONE_HARDNESS, 15, true, false, true, false, "hellforge", "hellforge").setFullCube(false).setRenderLayer(BlockRenderLayer.CUTOUT).setSell(600),
-					OBSIDIAN = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.STONE), ORE_HARDNESS, 65, true, false, false, true, "obsidian", "obsidian")
+					OBSIDIAN = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.STONE), ORE_HARDNESS, 65, true, false, false, true, "obsidian", "obsidian"),
+					OBSIDIAN_BRICK = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.STONE), STONE_HARDNESS, 15, true, false, false, true, "obsidian_brick", "obsidian_brick"),
+					OBSIDIAN_CHEST = new Chest(Properties.create(Material.EARTH).sound(SoundType.STONE), "obsidian_chest"),
+					OBSIDIAN_PLATFORM = new Platform(Properties.create(Material.EARTH).sound(SoundType.STONE), true, "obsidian_platform"),
+					OBSIDIAN_VASE = new DoubleBlock(Properties.create(Material.EARTH).sound(SoundType.GLASS), "obsidian_vase", "obsidian_vase"),
+					OBSIDIAN_LAMP = new DoubleBlock(Properties.create(Material.EARTH).sound(SoundType.STONE).lightValue(7), "obsidian_lamp", "obsidian_lamp"),
+					OBSIDIAN_PIANO = new BasicDirectional(Properties.create(Material.EARTH).sound(SoundType.STONE), STONE_HARDNESS, 15, true, false, true, false, "obsidian_piano", "obsidian_piano").setFullCube(false).setRenderLayer(BlockRenderLayer.CUTOUT).setSell(60),
+					OBSIDIAN_DOOR = (Door) new Door(GROUND_HARDNESS, 15, "obsidian_door").setSell(40),
+					OBSIDIAN_CHANDELIER = new CeilingCrossedBlock(Properties.create(Material.EARTH).sound(SoundType.STONE).doesNotBlockMovement().lightValue(5), 0, 0, true, false, false, true, "obsidian_chandelier", "obsidian_chandelier").setShape(Shape.BLOCK),
+					OBSIDIAN_LANTERN = new CeilingCrossedBlock(Properties.create(Material.EARTH).sound(SoundType.STONE).doesNotBlockMovement().lightValue(5), 0, 0, true, false, false, true, "obsidian_lantern", "obsidian_lantern").setShape(Shape.BLOCK),
+					OBSIDIAN_CANDELABRA = new CrossedBlock(Properties.create(Material.EARTH).sound(SoundType.STONE).doesNotBlockMovement().lightValue(5), 0, 0, true, false, false, true, "obsidian_candelabra", "obsidian_candelabra").setShape(Shape.BLOCK),
+					OBSIDIAN_CANDLE = new CrossedBlock(Properties.create(Material.EARTH).sound(SoundType.STONE).doesNotBlockMovement().lightValue(5), 0, 0, true, false, false, true, "obsidian_candle", "obsidian_candle").setShape(Shape.BLOCK),
+					DIMENSION_BLOCK = (BlockT) new DimensionBlock(Properties.create(Material.EARTH).sound(SoundType.STONE)).setRegistryName("dimension_block"),
+					OBSIDIAN_BED = (Bed) new Bed(GROUND_HARDNESS, 15, "obsidian_bed").setSell(400),
+					OBSIDIAN_CLOCK = (GrandfatherClock) new GrandfatherClock(GROUND_HARDNESS, 15, "obsidian_clock").setSell(60),
+					OBSIDIAN_SINK = new BasicDirectional(Properties.create(Material.EARTH).sound(SoundType.STONE), STONE_HARDNESS, 15, true, false, false, true, "obsidian_sink", "obsidian_sink").setFullCube(false).setRenderLayer(BlockRenderLayer.CUTOUT).setSell(60),
+					OBSIDIAN_CHAIR = new BasicDirectional(Properties.create(Material.EARTH).sound(SoundType.STONE), STONE_HARDNESS, 15, true, false, false, true, "obsidian_chair", "obsidian_chair").setFullCube(false).setRenderLayer(BlockRenderLayer.CUTOUT),
+					OBSIDIAN_TABLE = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.STONE), STONE_HARDNESS, 15, true, false, false, true, "obsidian_table", "obsidian_table").setFullCube(false).setRenderLayer(BlockRenderLayer.CUTOUT).setSell(60),
+					OBSIDIAN_WORKBENCH = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.STONE), STONE_HARDNESS, 15, true, false, false, true, "obsidian_workbench", "obsidian_workbench").setFullCube(false).setRenderLayer(BlockRenderLayer.CUTOUT).setSell(30),
+					OBSIDIAN_SOFA = new RightDouble(GROUND_HARDNESS, 15, "obsidian_sofa").setRenderLayer(BlockRenderLayer.CUTOUT).setSell(60),
+					OBSIDIAN_BATHTUB = new ForwardDouble(GROUND_HARDNESS, 15, "obsidian_bathtub").setRenderLayer(BlockRenderLayer.CUTOUT).setSell(60),
+					OBSIDIAN_DRESSER = new RightDouble(GROUND_HARDNESS, 15, "obsidian_dresser").setRenderLayer(BlockRenderLayer.CUTOUT).setSell(60),
+					OBSIDIAN_POT = new ObsidianPot(Properties.create(Material.EARTH).sound(SoundType.GLASS).doesNotBlockMovement()).setShape(Shape.BLOCK),
+					ROPE = new RopeBlock(true, "rope", "rope"),
+					OBSIDIAN_BOOKCASE = new BasicBlock(Properties.create(Material.EARTH).sound(SoundType.WOOD), GROUND_HARDNESS, 15, true, false, false, true, "obsidian_bookcase", "obsidian_bookcase"),
+					SHADOW_ORB = new ShadowOrb(),
+					COBALT_ORE = new CobaltOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
+					PALLIDUM_ORE = new PallidumOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
+					MITHRIL_ORE = new MithrilOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
+					ORICHALCUM_ORE = new OrichalcumOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
+					ADAMANTITE_ORE = new AdamantiteOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
+					TITANIUM_ORE = new TitaniumOre(Properties.create(Material.EARTH).sound(SoundType.STONE))
+
+
+
+
 
 
 
