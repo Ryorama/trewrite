@@ -134,7 +134,6 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator<OverworldGenSett
 					   	
 					   
 					   
-					    BlockPos pos = new BlockPos(x, y, z);
 					    double underworldCeiling = this.genElevation.getValue(k1 / 10.0f, l1 / 10.0f) * 5.0f;
 					    double underworldFloor = this.genTemperature.getValue(k1 / 100.0f, l1 / 100.0f) * 15.0f + underworldCeiling + 15;
 					    //int undernoise = (int)(2.5f * perlin.func_151601_a((double)(x + X * 16) / 10d, (double)(z + Z * 16) / 10d));
@@ -185,7 +184,6 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator<OverworldGenSett
 		      ChunkPos chunkpos1 = chunkIn.getPos();
 		      int k = chunkpos1.getXStart();
 		      int l = chunkpos1.getZStart();
-		      double d0 = 0.0625D;
 		      Biome[] abiome = chunkIn.getBiomes();
 
 		      for(int i1 = 0; i1 < 16; ++i1) {
@@ -210,22 +208,16 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator<OverworldGenSett
 		   double temp = genTemperature.getValue(X / 1000.0, Z / 1000.0) + extra * 0.05f;
 		   double humidity = genHumidity.getValue(X / 1000.0, Z / 1000.0) + extra * 0.05f;
 		   double elevation = genElevation.getValue(X / 1000.0, Z / 1000.0) + extra * 0.05f;
-		   double landmass = genElevation.getValue(X / 5000.0, Z / 5000.0) + extra * 0.05f;
-		   double variation = genBiomeVariation.getValue(X / 500.0, Z / 500.0) + extra * 0.05f;
 		   double pvariation = genBiomeVariation.getValue(X / 100.0, Z / 100.0) + extra * 0.05f;
 		   double corruption = genCorruption.getValue(X / 500.0, Z / 500.0) + extra * 0.05f;
 		   
 		   double pathVariation = pvariation + extra * 0.25f;
 		   
 		   boolean corrupt = corruption > 0.5f;
-		   boolean alternate = variation > 0;
 		   boolean grasspath = pathVariation < 0.1f && pathVariation > -0.1f;
 		   
-		   Biome current = BiomeT.LOWLANDS;
-		   Biome overlay = null;
-		   
 		   int landState = 0;
-		   int OCEAN = -2, VERY_LOW = -1, LOWLANDS = 0, HILLS = 1, MOUNTAINS = 2;
+		   int VERY_LOW = -1, LOWLANDS = 0, HILLS = 1, MOUNTAINS = 2;
 		   int humidState = 0;
 		   int DRY = 0, NORMAL = 1, HUMID = 2;
 		   int tempState = 0;
@@ -249,176 +241,128 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator<OverworldGenSett
 			   if (tempState == FREEZING) {
 				   if (humidState == DRY) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 				   }
 				   if (humidState == NORMAL) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 				   }
 				   if (humidState == HUMID) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 				   }
 			   }
 			   if (tempState == COLD) {
 				   if (humidState == DRY) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 				   }
 				   if (humidState == NORMAL) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 				   }
 				   if (humidState == HUMID) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 				   }
 			   }
 			   if (tempState == WARM) {
 				   if (humidState == DRY) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.COLD_STONE_PLAINS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 				   }
 				   if (humidState == NORMAL) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 				   }
 				   if (humidState == HUMID) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.JUNGLE;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.JUNGLE;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 				   }
 			   }
 			   if (tempState == HOT) {
 				   if (humidState == DRY) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.COLD_STONE_PLAINS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.DESERT;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 				   }
 				   if (humidState == NORMAL) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 				   }
 				   if (humidState == HUMID) {
 					   if (landState == VERY_LOW) {
-						   overlay = BiomeT.LOWLANDS;
 					   }
 					   if (landState == LOWLANDS) {
-						   overlay = BiomeT.MIDLANDS;
 					   }
 					   if (landState == HILLS) {
-						   overlay = BiomeT.HIGHLANDS;
 					   }
 					   if (landState == MOUNTAINS) {
-						   overlay = BiomeT.MIDLANDS;
 					   }
 				   }
 			   }
@@ -528,17 +472,10 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator<OverworldGenSett
 	   }
 
 	   protected void func_222548_a(double[] p_222548_1_, int p_222548_2_, int p_222548_3_) {
-	      double d0 = (double)684.412F;
-	      double d1 = (double)684.412F;
-	      double d2 = 8.555149841308594D;
-	      double d3 = 4.277574920654297D;
-	      int i = -10;
-	      int j = 3;
 	      this.func_222546_a(p_222548_1_, p_222548_2_, p_222548_3_, (double)684.412F, (double)684.412F, 8.555149841308594D, 4.277574920654297D, 3, -10);
 	   }
 
 	   protected double func_222545_a(double p_222545_1_, double p_222545_3_, int p_222545_5_) {
-	      double d0 = 8.5D;
 	      double d1 = ((double)p_222545_5_ - (8.5D + p_222545_1_ * 8.5D / 8.0D * 4.0D)) * 12.0D * 128.0D / 256.0D / p_222545_3_;
 	      if (d1 < 0.0D) {
 	         d1 *= 4.0D;
@@ -552,7 +489,6 @@ public class TerrariaChunkGenerator extends NoiseChunkGenerator<OverworldGenSett
 	      float f = 0.0F;
 	      float f1 = 0.0F;
 	      float f2 = 0.0F;
-	      int i = 2;
 	      float f3 = this.biomeProvider.func_222366_b(p_222549_1_, p_222549_2_).getDepth();
 
 	      for(int j = -2; j <= 2; ++j) {

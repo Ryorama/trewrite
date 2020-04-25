@@ -74,18 +74,12 @@ public class TermiteMoundFeature extends Feature<NoFeatureConfig> {
 		   double r = (double)rad;
 		   int height = rand.nextInt(10) + 15;
 		   
-		   double dir = rand.nextDouble() - 0.5;
-		   
 		   double xd = rand.nextDouble() - 0.5;
 		   double zd = rand.nextDouble() - 0.5;
 		   
-		   int X = (int) (xd * height);
-		   int Z = (int) (zd * height);
 		   
 		   
-		   double R = 10;
 		   
-		   int Y = (int) (height - R);
 		   
 //		   for (int x = (int)-R * 2; x < R * 2; x++) {
 //			   for (int y = (int)-R * 2; y < R * 2; y++) {
@@ -109,8 +103,6 @@ public class TermiteMoundFeature extends Feature<NoFeatureConfig> {
 		   for (int y = 0; y < height; y++) {
 			   r -= 1.0 / (double)height;
 			   
-			   double sine = Math.sin(Math.toRadians(y * 10 * dir));
-			   double cos = Math.cos(Math.toRadians(y * 10 * dir));
 			   r += (rand.nextDouble() - 0.5) * 2;
 			   for (int x = -rad; x < rad; x++) {
 				   for (int z = -rad; z < rad; z++) {

@@ -29,7 +29,6 @@ public class EvergreenTreeFeature extends Feature<NoFeatureConfig> {
 	         BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 	         if (worldIn.getBlockState(blockpos.up()) == Blocks.AIR.getDefaultState())
 	         if (worldIn.getBlockState(blockpos) == BlocksT.SNOW.getDefaultState()) {
-	        	 int rad = 2;
 	        	 tree(pos, worldIn, rand);
 	        	 break;
 	         }

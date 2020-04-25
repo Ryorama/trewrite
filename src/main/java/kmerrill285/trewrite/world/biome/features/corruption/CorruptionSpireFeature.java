@@ -31,7 +31,6 @@ public class CorruptionSpireFeature extends Feature<NoFeatureConfig> {
 		   for(int i = 0; i < rand.nextInt(5) + 5; ++i) {
 	         BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 	         if (worldIn.getBlockState(blockpos) == BlocksT.CORRUPT_GRASS.getDefaultState()) {
-	        	 int rad = 2;
 	        	 tree(pos, worldIn, rand);
 	        	 break;
 	         }
@@ -117,8 +116,6 @@ public class CorruptionSpireFeature extends Feature<NoFeatureConfig> {
 		   private class L {
 			   public LSystemPos pos = new LSystemPos(0, 0, 0);
 			   public boolean xy;
-			   public int dir;
-			   
 			   public boolean main = false;
 			   
 			   //UP, RIGHT, DOWN, LEFT

@@ -69,7 +69,6 @@ public class TerrariaBiomeProvider extends BiomeProvider {
 		   double temp = genTemperature.getValue(X / 2500.0, Y / 2500.0) + extra * 0.05f;
 		   double humidity = genHumidity.getValue(X / 2500.0, Y / 2500.0) + extra * 0.05f;
 		   double elevation = genElevation.getValue(X / 2500.0, Y / 2500.0) + extra * 0.05f; 
-		   double landmass = genElevation.getValue(X / 5000.0, Y / 5000.0) + extra * 0.05f;
 		   double variation = genBiomeVariation.getValue(X / 100.0, Y / 100.0) + extra * 0.05f;
 		   double corruption = genCorruption.getValue(X / 500.0, Y / 500.0) + extra * 0.05f;
 		   
@@ -81,7 +80,7 @@ public class TerrariaBiomeProvider extends BiomeProvider {
 		   Biome current = BiomeT.LOWLANDS;
 		   
 		   int landState = 0;
-		   int OCEAN = -2, VERY_LOW = -1, LOWLANDS = 0, HILLS = 1, MOUNTAINS = 2;
+		   int VERY_LOW = -1, LOWLANDS = 0, HILLS = 1, MOUNTAINS = 2;
 		   int humidState = 0;
 		   int DRY = 0, NORMAL = 1, HUMID = 2;
 		   int tempState = 0;

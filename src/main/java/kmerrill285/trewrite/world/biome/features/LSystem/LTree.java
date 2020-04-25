@@ -109,13 +109,11 @@ public class LTree {
    public boolean placeInWorld(IWorld worldIn, Random rand, BlockPos pos) {
 	   if (growsOn == null) {
 		   if (worldIn.getBlockState(pos) != Blocks.AIR.getDefaultState()) {
-	        	 int rad = 2;
 	        	 tree(pos, worldIn, rand);
 	         } 
 	   }
 	   for (int i = 0; i < growsOn.length; i++) {
 		   if (worldIn.getBlockState(pos) == growsOn[i]) {
-	        	 int rad = 2;
 	        	 tree(pos, worldIn, rand);
 	       } 
 	   }

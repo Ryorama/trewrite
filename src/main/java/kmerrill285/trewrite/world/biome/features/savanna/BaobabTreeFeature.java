@@ -31,7 +31,6 @@ public class BaobabTreeFeature extends Feature<NoFeatureConfig> {
 		   for(int i = 0; i < rand.nextInt(5) + 5; ++i) {
 	         BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 	         if (worldIn.getBlockState(blockpos) == BlocksT.SAVANNA_GRASS.getDefaultState()) {
-	        	 int rad = 2;
 	        	 tree(pos, worldIn, rand);
 	        	 carve(pos, worldIn, rand);
 	        	 break;
@@ -74,7 +73,6 @@ public class BaobabTreeFeature extends Feature<NoFeatureConfig> {
 			   for (int x = -doorRad; x < doorRad; x++) {
 					for (int y = -doorRad; y < doorRad; y++) {
 						for (int z = -doorRad; z < doorRad; z++) {
-						   double dist = Math.sqrt(x * x + y * y + z * z);
 						   if (worldIn.isAreaLoaded(new BlockPos(door.getX() + x, door.getY() + y, door.getZ() + z), 1)) {
 							   BlockPos pos2 = new BlockPos(door.getX() + x, door.getY() + y, door.getZ() + z);
 							   if (worldIn.getBlockState(pos2) == BlocksT.LIVING_WOOD.getDefaultState()) {
@@ -92,7 +90,6 @@ public class BaobabTreeFeature extends Feature<NoFeatureConfig> {
 			   for (int x = -doorRad; x < doorRad; x++) {
 					for (int y = -doorRad; y < doorRad; y++) {
 						for (int z = -doorRad; z < doorRad; z++) {
-						   double dist = Math.sqrt(x * x + y * y + z * z);
 						   if (worldIn.isAreaLoaded(new BlockPos(door.getX() + x, door.getY() + y, door.getZ() + z), 1)) {
 							   BlockPos pos2 = new BlockPos(door.getX() + x, door.getY() + y, door.getZ() + z);
 							   if (worldIn.getBlockState(pos2) == BlocksT.LIVING_WOOD.getDefaultState()) {
@@ -222,8 +219,6 @@ public class BaobabTreeFeature extends Feature<NoFeatureConfig> {
 		   private class L {
 			   public LSystemPos pos = new LSystemPos(0, 0, 0);
 			   public boolean xy;
-			   public int dir;
-			   
 			   public boolean main = false;
 			   
 			   //UP, RIGHT, DOWN, LEFT

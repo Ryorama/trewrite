@@ -66,8 +66,6 @@ public class TerrariaDimension extends OverworldDimension {
 		int mushroom = 0;
 		int jungle = 0;
 		int snow = 0;
-		int beach = 0;
-		
 		if (world != null) {
 			for (int x = -15; x < 15; x++) {
 				for (int y = -15; y < 15; y++) {
@@ -95,7 +93,6 @@ public class TerrariaDimension extends OverworldDimension {
 						if (block == BlocksT.SAND && new Vec3d(cameraPos.getX(), cameraPos.getY(), cameraPos.getZ()).distanceTo(new Vec3d(0, cameraPos.getY(), 0)) < 4500) {
 							desert++;
 						} else {
-							beach++;
 						}
 					}
 				}

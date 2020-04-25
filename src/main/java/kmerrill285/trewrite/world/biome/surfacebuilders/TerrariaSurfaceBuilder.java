@@ -21,17 +21,13 @@ public class TerrariaSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig>
 	   }
 
 	   protected void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, BlockState top, BlockState middle, BlockState bottom, int sealevel) {
-	      BlockState blockstate = top;
-	      BlockState blockstate1 = middle;
 	      BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-	      int i = -1;
 	      int j = (int)(noise / 3.0D + 3.0D + random.nextDouble() * 0.25D);
 	      int k = x & 15;
 	      int l = z & 15;
 
 	      for(int i1 = startHeight; i1 >= 0; --i1) {
 	         blockpos$mutableblockpos.setPos(k, i1, l);
-	         BlockState blockstate2 = chunkIn.getBlockState(blockpos$mutableblockpos);
 	         if (i1 <= j)
 	         chunkIn.setBlockState(new BlockPos(x, i1, z), BlocksT.STONE_BLOCK.getDefaultState(), false);
 	      }

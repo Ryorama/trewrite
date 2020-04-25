@@ -118,8 +118,6 @@ public class MesaShrubFeature extends Feature<NoFeatureConfig> {
 		   private class L {
 			   public LSystemPos pos = new LSystemPos(0, 0, 0);
 			   public boolean xy;
-			   public int dir;
-			   
 			   public boolean main = false;
 			   
 			   //UP, RIGHT, DOWN, LEFT

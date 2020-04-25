@@ -31,8 +31,6 @@ public class TaigaRocksFeature extends Feature<NoFeatureConfig> {
 		   for(int i = 0; i < rand.nextInt(5) + 5; ++i) {
 	         BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 	         if (worldIn.getBlockState(blockpos) == BlocksT.PODZOL.getDefaultState() || worldIn.getBlockState(blockpos) == BlocksT.GRASS_BLOCK.getDefaultState()) {
-	        	 int rad = 2;
-	        	 
 	        	 if (rand.nextInt(10) <= 4)
 	        		 tree(pos, worldIn, rand);
 	        	 else {
