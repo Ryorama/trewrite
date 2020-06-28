@@ -7,14 +7,19 @@ import kmerrill285.trewrite.blocks.corruption_orbs.ShadowOrb;
 import kmerrill285.trewrite.blocks.ores.AdamantiteOre;
 import kmerrill285.trewrite.blocks.ores.CobaltOre;
 import kmerrill285.trewrite.blocks.ores.CopperOre;
+import kmerrill285.trewrite.blocks.ores.CrimtaneOre;
 import kmerrill285.trewrite.blocks.ores.DemoniteOre;
 import kmerrill285.trewrite.blocks.ores.GoldOre;
 import kmerrill285.trewrite.blocks.ores.IronOre;
+import kmerrill285.trewrite.blocks.ores.LeadOre;
 import kmerrill285.trewrite.blocks.ores.MithrilOre;
 import kmerrill285.trewrite.blocks.ores.OrichalcumOre;
 import kmerrill285.trewrite.blocks.ores.PallidumOre;
+import kmerrill285.trewrite.blocks.ores.PlatinumOre;
 import kmerrill285.trewrite.blocks.ores.SilverOre;
+import kmerrill285.trewrite.blocks.ores.TinOre;
 import kmerrill285.trewrite.blocks.ores.TitaniumOre;
+import kmerrill285.trewrite.blocks.ores.TungstenOre;
 import kmerrill285.trewrite.blocks.pots.ObsidianPot;
 import kmerrill285.trewrite.blocks.pots.Pot;
 import net.minecraft.block.Block;
@@ -225,6 +230,12 @@ public class BlocksT {
 	public static AdamantiteOre ADAMANTITE_ORE;
 	public static TitaniumOre TITANIUM_ORE;
 	
+	public static TinOre TIN_ORE;
+	public static LeadOre LEAD_ORE;
+	public static CrimtaneOre CRIMTANE_ORE;
+	public static TungstenOre TUNGSTEN_ORE;
+	public static PlatinumOre PLATINUM_ORE;
+	
 	public static float mul = 1.5f;
 	public static float GROUND_HARDNESS = 30.0f * mul, STONE_HARDNESS = 45.0f * mul, ORE_HARDNESS = 50.0f * mul, DUNGEON_HARDNESS = 60.0f * mul;
 	 
@@ -389,7 +400,12 @@ public class BlocksT {
 					MITHRIL_ORE = new MithrilOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
 					ORICHALCUM_ORE = new OrichalcumOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
 					ADAMANTITE_ORE = new AdamantiteOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
-					TITANIUM_ORE = new TitaniumOre(Properties.create(Material.EARTH).sound(SoundType.STONE))
+					TITANIUM_ORE = new TitaniumOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
+					TIN_ORE = new TinOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
+					LEAD_ORE = new LeadOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
+					TUNGSTEN_ORE = new TungstenOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
+					CRIMTANE_ORE = new CrimtaneOre(Properties.create(Material.EARTH).sound(SoundType.STONE)),
+					PLATINUM_ORE = new PlatinumOre(Properties.create(Material.EARTH).sound(SoundType.STONE))
 
 
 

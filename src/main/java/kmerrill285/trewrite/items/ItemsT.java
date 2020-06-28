@@ -5,6 +5,11 @@ import java.util.HashMap;
 import kmerrill285.featurescript.FeatureScript;
 import kmerrill285.trewrite.blocks.Bed;
 import kmerrill285.trewrite.blocks.BlocksT;
+import kmerrill285.trewrite.blocks.ores.CrimtaneOre;
+import kmerrill285.trewrite.blocks.ores.LeadOre;
+import kmerrill285.trewrite.blocks.ores.PlatinumOre;
+import kmerrill285.trewrite.blocks.ores.TinOre;
+import kmerrill285.trewrite.blocks.ores.TungstenOre;
 import kmerrill285.trewrite.core.network.NetworkHandler;
 import kmerrill285.trewrite.core.network.client.CPacketChangeScore;
 import kmerrill285.trewrite.crafting.Recipes;
@@ -356,7 +361,6 @@ public class ItemsT {
 	public static ItemBlockT ORICHALCUM_ORE;
 	public static ItemBlockT ADAMANTITE_ORE;
 	public static ItemBlockT TITANIUM_ORE;
-	public static ItemBlockT TUNGSTEN_ORE;
 	
 	public static ItemT COBALT_BAR;
 	public static ItemT PALLIDUM_BAR;
@@ -364,7 +368,35 @@ public class ItemsT {
 	public static ItemT ORICHALCUM_BAR;
 	public static ItemT ADAMANTITE_BAR;
 	public static ItemT TITANIUM_BAR;
+	
+	public static ItemBlockT TIN_ORE;
+	public static ItemBlockT LEAD_ORE;
+	public static ItemBlockT CRIMTANE_ORE;
+	public static ItemBlockT TUNGSTEN_ORE;
+	public static ItemBlockT PLATINUM_ORE;
 
+	public static ItemT TIN_BAR;
+	public static ItemT LEAD_BAR;
+	public static ItemT CRIMTANE_BAR;
+	public static ItemT TUNGSTEN_BAR;
+	public static ItemT PLATINUM_BAR;
+	
+	public static Armor COPPER_HELMET;
+	public static Armor COPPER_CHESTPLATE;
+	public static Armor COPPER_LEGGINGS;
+	
+	public static Armor IRON_HELMET;
+	public static Armor IRON_CHESTPLATE;
+	public static Armor IRON_LEGGINGS;
+	
+	public static Armor MOLTEN_HELMET;
+	public static Armor MOLTEN_CHESTPLATE;
+	public static Armor MOLTEN_LEGGINGS;
+
+	public static Armor GOLD_HELMET;
+	public static Armor GOLD_CHESTPLATE;
+	public static Armor GOLD_LEGGINGS;
+	
 	public static ItemT ANY_WOOD = new ItemT().setItemName("ANY_WOOD");
 	public static ItemT ANY_IRON = new ItemT().setItemName("ANY_IRON");
 	public static ItemT ANY_SAND = new ItemT().setItemName("ANY_SAND");
@@ -740,7 +772,29 @@ public class ItemsT {
 				MITHRIL_BAR = new MetalBar(300, "mithril_bar"),
 				ORICHALCUM_BAR = new MetalBar(300, "orichalcum_bar"),
 				ADAMANTITE_BAR = new MetalBar(300, "adamantite_bar"),
-				TITANIUM_BAR = new MetalBar(300, "titanium_bar")
+				TITANIUM_BAR = new MetalBar(300, "titanium_bar"),
+				TIN_ORE = (ItemBlockT) new ItemBlockT(BlocksT.TIN_ORE, "tin_ore").setMaxStack(999),
+				LEAD_ORE = (ItemBlockT) new ItemBlockT(BlocksT.LEAD_ORE, "lead_ore").setMaxStack(999),
+				CRIMTANE_ORE = (ItemBlockT) new ItemBlockT(BlocksT.CRIMTANE_ORE, "crimtane_ore").setMaxStack(999),
+				TUNGSTEN_ORE = (ItemBlockT) new ItemBlockT(BlocksT.TUNGSTEN_ORE, "tungsten_ore").setMaxStack(999),
+				PLATINUM_ORE = (ItemBlockT) new ItemBlockT(BlocksT.PLATINUM_ORE, "platinum_ore").setMaxStack(999),
+				TIN_BAR = new MetalBar(300, "tin_bar"),
+				LEAD_BAR = new MetalBar(300, "lead_bar"),
+				CRIMTANE_BAR = new MetalBar(300, "crimtane_bar"),
+				TUNGSTEN_BAR = new MetalBar(300, "tungsten_bar"),
+				PLATINUM_BAR = new MetalBar(300, "platinum_bar"),
+				COPPER_HELMET = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "copper_helmet", Armor.ArmorType.HEAD, Armor.RenderType.HEAD, 1, 128, 64, false).setTooltip("Set bonus: +1 defense"),
+				COPPER_CHESTPLATE = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "copper_chestplate", Armor.ArmorType.CHEST, Armor.RenderType.SHIRT, 2, 128, 64, false).setTooltip("Set bonus: +1 defense"),
+				COPPER_LEGGINGS = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "copper_leggings", Armor.ArmorType.LEGS, Armor.RenderType.PANTS, 1, 64, 32, true).setTooltip("Set bonus: +1 defense"),
+				IRON_HELMET = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "iron_helmet", Armor.ArmorType.HEAD, Armor.RenderType.HEAD, 2, 128, 64, false).setTooltip("Set bonus: +1 defense"),
+				IRON_CHESTPLATE = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "iron_chestplate", Armor.ArmorType.CHEST, Armor.RenderType.SHIRT, 3, 128, 64, false).setTooltip("Set bonus: +1 defense"),
+				IRON_LEGGINGS = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "iron_leggings", Armor.ArmorType.LEGS, Armor.RenderType.PANTS, 2, 64, 32, true).setTooltip("Set bonus: +1 defense"),
+				GOLD_HELMET = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "gold_helmet", Armor.ArmorType.HEAD, Armor.RenderType.HEAD, 4, 128, 64, false).setTooltip("Set bonus: +1 defense"),
+				GOLD_CHESTPLATE = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "gold_chestplate", Armor.ArmorType.CHEST, Armor.RenderType.SHIRT, 5, 128, 64, false).setTooltip("Set bonus: +1 defense"),
+				GOLD_LEGGINGS = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "gold_leggings", Armor.ArmorType.LEGS, Armor.RenderType.PANTS, 4, 64, 32, true).setTooltip("Set bonus: +1 defense"),
+				MOLTEN_HELMET = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "molten_helmet", Armor.ArmorType.HEAD, Armor.RenderType.HEAD, 8, 128, 64, false).setTooltip("Set bonus: +1 defense"),
+				MOLTEN_CHESTPLATE = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "molten_chestplate", Armor.ArmorType.CHEST, Armor.RenderType.SHIRT, 9, 128, 64, false).setTooltip("Set bonus: +1 defense"),
+				MOLTEN_LEGGINGS = (Armor) new Armor(new Properties().group(ItemGroup.COMBAT), "molten_leggings", Armor.ArmorType.LEGS, Armor.RenderType.PANTS, 8, 64, 32, true).setTooltip("Set bonus: +1 defense")
 
 
 				);
