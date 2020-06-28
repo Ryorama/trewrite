@@ -5,6 +5,7 @@ import kmerrill285.trewrite.blocks.BlocksT;
 import kmerrill285.trewrite.util.Conversions;
 import net.minecraft.block.Block.Properties;
 
+
 public class OrichalcumOre extends BlockT {
 
 	public OrichalcumOre(Properties properties) {

@@ -5,6 +5,7 @@ import kmerrill285.trewrite.blocks.BlocksT;
 import kmerrill285.trewrite.util.Conversions;
 import net.minecraft.block.Block.Properties;
 
+
 public class MithrilOre extends BlockT {
 
 	public MithrilOre(Properties properties) {

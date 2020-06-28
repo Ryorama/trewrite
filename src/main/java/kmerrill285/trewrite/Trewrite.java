@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import kmerrill285.trewrite.blocks.BlocksT;
+import kmerrill285.trewrite.core.commands.CommandsT;
 import kmerrill285.trewrite.core.inventory.InventorySlot;
 import kmerrill285.trewrite.core.inventory.InventoryTerraria;
 import kmerrill285.trewrite.core.items.ItemStackT;
@@ -13,8 +14,10 @@ import kmerrill285.trewrite.core.network.NetworkHandler;
 import kmerrill285.trewrite.core.network.server.SPacketSendAccessories;
 import kmerrill285.trewrite.entities.EntitiesT;
 import kmerrill285.trewrite.entities.EntityItemT;
-import kmerrill285.trewrite.entities.monsters.EntityEyeOfCthulhu;
+import kmerrill285.trewrite.entities.monsters.bosses.EntityEyeOfCthulhu;
+import kmerrill285.trewrite.events.BloodmoonHandler;
 import kmerrill285.trewrite.events.EntityEvents;
+import kmerrill285.trewrite.events.ScoreboardEvents;
 import kmerrill285.trewrite.events.WorldEvents;
 import kmerrill285.trewrite.items.Armor;
 import kmerrill285.trewrite.items.ItemsT;
@@ -26,20 +29,28 @@ import kmerrill285.trewrite.world.EntitySpawner;
 import kmerrill285.trewrite.world.TerrariaDimension;
 import kmerrill285.trewrite.world.TerrariaWorldType;
 import kmerrill285.trewrite.world.WorldStateHolder;
+import kmerrill285.trewrite.world.dimension.DimensionRegistry;
+import kmerrill285.trewrite.world.dimension.Dimensions;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.resources.ResourcePackInfo;
+import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.WorldTickEvent;
 import net.minecraftforge.event.world.BlockEvent.NeighborNotifyEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -59,10 +70,18 @@ public class Trewrite
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static final boolean DEBUG = true;
+    public static boolean DEBUG = false;
+    
+   
     
     public Trewrite() {
-    	
+//    	FeatureScript.load();
+    	try {
+    		Field f = Chunk.class.getDeclaredField("field_76634_f");
+    	} catch (Exception e) {
+    		DEBUG = true;
+    		System.out.println("DEBUG!");
+    	}
     	new ItemModifier();
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -72,6 +91,11 @@ public class Trewrite
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        
+        
+        
+        
+        
         
 //        FMLJavaModLoadingContext.get().getModEventBus().addListener(OverlayEvents::handleOverlayEvent);
 
@@ -107,29 +131,90 @@ public class Trewrite
         WorldType.WORLD_TYPES = types2;
     }
     
+    
     @SubscribeEvent
 	public static void onBlockUpdate(NeighborNotifyEvent e) {
+    	
+    	
+    	
     	if (e.getState().getBlock() == Blocks.STONE || e.getState().getBlock() == Blocks.COBBLESTONE) {
     		e.getWorld().setBlockState(e.getPos(), BlocksT.STONE_BLOCK.getDefaultState(), 0);
     	}
     	if (e.getState().getBlock() == Blocks.OBSIDIAN) {
     		e.getWorld().setBlockState(e.getPos(), BlocksT.OBSIDIAN.getDefaultState(), 0);
     	}
+    	if (e.getState().getBlock() == Blocks.ICE) {
+    		e.getWorld().setBlockState(e.getPos(), Blocks.WATER.getDefaultState(), 0);
+    	}
     }
     
     public static int ticks = 0;
     public static boolean spawningEye = false;
     public static boolean oncePerDay = false;
+    
 	public static void onWorldTick(WorldTickEvent event)
 	{
-
+	
+//		if (DimensionManager.getWorld(event.world.getServer(), t, true, true) == null) {
+//			DimensionManager.initWorld(event.world.getServer(), t);
+//		}
+		
 		World world = event.world;
 		
-		world.getGameRules().get(GameRules.DO_WEATHER_CYCLE).set(false, world.getServer());
+		BloodmoonHandler.handleBloodmoon(world);
 		
+		WorldStateHolder holder = WorldStateHolder.get(world);
+		holder.update(world, world.getDimension().getType());
+		
+		DimensionType sky = DimensionManager.registerOrGetDimension(Dimensions.skyLocation, DimensionRegistry.skyDimension, null, true);
+		DimensionType underground = DimensionManager.registerOrGetDimension(Dimensions.undergroundLocation, DimensionRegistry.undergroundDimension, null, true);
+		DimensionType underworld = DimensionManager.registerOrGetDimension(Dimensions.underworldLocation, DimensionRegistry.underworldDimension, null, true);
+
+		world.getGameRules().get(GameRules.DO_WEATHER_CYCLE).set(false, world.getServer());
+
 		for (PlayerEntity player : world.getPlayers()) {
-			InventoryTerraria inventory = WorldEvents.inventories.get(player.getScoreboardName());
+			if (event.phase == TickEvent.Phase.END)
+			if (event.type == TickEvent.Type.WORLD)
+			if (!player.world.isRemote) {
+				if (player.getServer() != null) {
+					Scoreboard scoreboard = player.getWorldScoreboard();
+					
+					ScoreboardEvents.handleScoreboard(player, world, scoreboard);
+				}
+			}
 			
+			InventoryTerraria inventory = WorldEvents.getOrLoadInventory(player);
+			if (player.getPosition().getY() < 0) {
+				if (player.dimension == sky) {
+					Dimensions.teleportPlayer((ServerPlayerEntity)player, DimensionType.OVERWORLD, new BlockPos(player.getPosition().getX(), 255, player.getPosition().getZ()));
+					return;
+				}
+				if (player.dimension == DimensionType.OVERWORLD) {
+					Dimensions.teleportPlayer((ServerPlayerEntity)player, underground, new BlockPos(player.getPosition().getX(), 255, player.getPosition().getZ()));
+					return;
+				}
+				if (player.dimension == underground) {
+					Dimensions.teleportPlayer((ServerPlayerEntity)player, underworld, new BlockPos(player.getPosition().getX(), 255, player.getPosition().getZ()));
+					return;
+				}
+			}
+			
+			
+			if (player.getPosition().getY() > 255) {
+				if (player.dimension == DimensionType.OVERWORLD) {
+					Dimensions.teleportPlayer((ServerPlayerEntity)player, sky, new BlockPos(player.getPosition().getX(), player.getPosition().getY() - 256, player.getPosition().getZ()));
+					return;
+				}
+				if (player.dimension == underground) {
+					Dimensions.teleportPlayer((ServerPlayerEntity)player, DimensionType.OVERWORLD, new BlockPos(player.getPosition().getX(), player.getPosition().getY() - 256, player.getPosition().getZ()));
+					return;
+				}
+				if (player.dimension == underworld) {
+					Dimensions.teleportPlayer((ServerPlayerEntity)player, underground, new BlockPos(player.getPosition().getX(), player.getPosition().getY() - 256, player.getPosition().getZ()));
+					return;
+				}
+			}
+
 			int defense = 0;
 			
 			
@@ -140,7 +225,7 @@ public class Trewrite
 					if (slot.stack != null) {
 						if (slot.stack.item instanceof Armor) {
 							Armor armor = (Armor)slot.stack.item;
-							defense += armor.defense;
+							defense += armor.getDefense(inventory.armor);
 						}
 					}
 				}
@@ -171,7 +256,7 @@ public class Trewrite
 							oncePerDay = true;
 							if (world.rand.nextInt(10) == 0) {
 								spawningEye = true;
-						    	world.getServer().sendMessage(new StringTextComponent("/tellraw @a {\"text\":\"You feel an evil presence watching you.\",\"bold\":true,\"color\":\"blue\"}"));
+						    	world.getServer().getPlayerList().sendMessage(new StringTextComponent("You feel an evil presence watching you.").applyTextStyles(TextFormatting.BLUE, TextFormatting.BOLD));
 							}
 						}
 					}
@@ -202,11 +287,12 @@ public class Trewrite
 			
 			Trewrite.ticks++;
 			if (Trewrite.ticks % 20 == 0) {
+				
 				new Thread() {
 					public void run() {
 						try {
 							for (PlayerEntity player : event.world.getPlayers()) {
-								SPacketSendAccessories packet = new SPacketSendAccessories(player.getScoreboardName());
+								SPacketSendAccessories packet = new SPacketSendAccessories(player);
 								if (event.world instanceof ServerWorld)
 								for (ServerPlayerEntity send : ((ServerWorld)event.world).getPlayers())
 		    	    	 			NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> send), packet);
@@ -220,14 +306,15 @@ public class Trewrite
 				
 			}
 			
-			WorldStateHolder holder = WorldStateHolder.get(world);
+			
 			Util.minSpawnDistance = 15.0;
 			Util.entitySpawnRate = 1.0/25.0;
 			
+			if (world.rand.nextInt(100) <= 10)
 			if (world.rand.nextDouble() <= Util.starChance / 3.0) {
 				if (world.getPlayers().size() > 0) {
 					PlayerEntity player = world.getPlayers().get(world.rand.nextInt(world.getPlayers().size()));
-					double x = player.posX + world.rand.nextInt(180) - 90, y = 255, z = player.posZ + world.rand.nextInt(180) - 90;
+					double x = player.posX + world.rand.nextInt(80) - 40, y = 255, z = player.posZ + world.rand.nextInt(80) - 40;
 					
 					EntityItemT item = EntitiesT.ITEM.create(world, null, null, null, new BlockPos(x, y, z), SpawnReason.EVENT, false, false);
 					item.setItem(new ItemStackT(ItemsT.FALLEN_STAR, 1, null));
@@ -235,6 +322,8 @@ public class Trewrite
 					item.pickupDelay = 0;
 					world.addEntity(item);
 					item.hitGround = false;
+					
+					
 				}
 			}
 			
@@ -243,15 +332,20 @@ public class Trewrite
 			
 				
 			
-			
-			if (world.rand.nextDouble() <= Util.entitySpawnRate) {
-				for (PlayerEntity player : world.getPlayers()) {
-					double x = player.posX + world.rand.nextInt(180) - 90, y = player.posY + world.rand.nextInt(180) - 90, z = player.posZ + world.rand.nextInt(180) - 90;
-					for (PlayerEntity p2 : world.getPlayers()) {
+			A:
+				if (world.rand.nextInt(100) <= 10)
+			if (world.getPlayers().size() > 0) {
+				PlayerEntity player = world.getPlayers().get(world.rand.nextInt(world.getPlayers().size()));
+				int battle = ScoreboardEvents.getScore(player.getWorldScoreboard(), player, ScoreboardEvents.BATTLE).getScorePoints();
+				if (world.rand.nextDouble() <= Util.entitySpawnRate * (battle > 0 ? 2 : 1)) {
+				if (ScoreboardEvents.getScore(player.getWorldScoreboard(), player, ScoreboardEvents.CALMING).getScorePoints() > 0)
+					if (world.rand.nextBoolean()) break A;
+				double x = player.posX + world.rand.nextInt(80) - 40, y = player.posY + world.rand.nextInt(80) - 40, z = player.posZ + world.rand.nextInt(80) - 40;
+				
+				for (PlayerEntity p2 : world.getPlayers()) {
 						if (p2.getPositionVec().distanceTo(new Vec3d(x, y, z)) >= Util.minSpawnDistance) {
 							new Thread () {
 								public void run() {
-									
 									EntitySpawner.spawnEntities(player, x, y, z);
 								}
 							}.start();
@@ -259,9 +353,6 @@ public class Trewrite
 							break;
 						}
 					}
-					
-					
-					
 				}
 			}
 		}
@@ -276,12 +367,11 @@ public class Trewrite
 //    	MinecraftForge.EVENT_BUS.register(new WorldEvents());
         // some preinit code
     	
-    	
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
-//    	RenderingRegistry.registerEntityRenderingHandler(EntityItemT.class, manager -> new RenderEntityItemT(manager, Minecraft.getInstance().getItemRenderer()));
+    	ResourcePackInfo info;
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
@@ -296,7 +386,7 @@ public class Trewrite
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
-        // do something when the server starts
+        CommandsT.register(event.getCommandDispatcher());
     }
     
     
